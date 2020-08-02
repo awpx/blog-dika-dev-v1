@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import { PostCard } from '../components/PostCard'
+import { PostCard } from './PostCard'
 import posts from '../PostMocks'
 
 

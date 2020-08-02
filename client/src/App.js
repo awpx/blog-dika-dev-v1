@@ -1,28 +1,22 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap'
-import { Header } from './components/Header'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Container,} from 'react-bootstrap'
 import { Footer } from './components/Footer'
-import { PostList } from './pages/PostList';
+import { HomePages } from './pages/HomePages'
+import { PostPages } from './pages/PostPages'
 
 function App() {
   return (
-    <>
+    <Router>
     
-    <main className='py-3'>
-      <Container>
-        <Row>
-          <Col></Col>
-          <Col md={10}>
-            <Header />
-            <PostList />
-          </Col>
-          <Col></Col>
-        </Row>
-        
-      </Container>
-    </main>
-    <Footer />
-    </>
+      <main className='py-3'>
+        <Container>
+          <Route exact path='/' component={HomePages} />
+          <Route path='/post/:id' component={PostPages} />
+        </Container>
+      </main>
+      <Footer />
+    </Router>
   );
 }
 

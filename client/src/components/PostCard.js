@@ -1,19 +1,20 @@
 import React from 'react'
 import { Card } from 'react-bootstrap' 
+import { Link } from 'react-router-dom'
 
 export const PostCard = ({ post }) => {
   return (
     <Card className='my-3 rounded'>
-      <a href={`/post/${post.id}`}>
+      <Link to={`/post/${post.id}`}>
         <Card.Img src={post.image} variant='top' />
-      </a>
+      </Link>
 
       <Card.Body>
-      <a href={`/post/${post.id}`} style={{color: '#0c0c0d'}}>
+      <Link to={`/post/${post.id}`}>
         <Card.Title as='div'>
           <h2>{post.title}</h2>
         </Card.Title>
-      </a>
+      </Link>
 
       <Card.Text as='div'>
         <h5 className='text-muted'>{post.description}</h5>
