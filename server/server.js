@@ -1,8 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import posts from './data/PostMocks.js'
+import colors from 'colors'
+import posts from './data/postsMocks.js'
+import connectDB from './config/db.js'
 
 dotenv.config()
+
+connectDB()
 
 const app = express()
 
@@ -17,4 +21,4 @@ app.get('/api/v1/posts/:id', (req, res) => {
 
 const PORT = process.env.PORT
 
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold))
