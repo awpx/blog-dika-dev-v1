@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom'
 
 export const PostCard = ({ post }) => {
   return (
-    <Card className='my-3 rounded'>
-      <Link to={`/post/${post.id}`}>
+    <Card className='my-4 rounded'>
+      <Link to={`/post/${post._id}`}>
         <Card.Img src={post.image} variant='top' />
       </Link>
 
       <Card.Body>
-      <Link to={`/post/${post.id}`}>
+      <Link to={`/post/${post._id}`}>
         <Card.Title as='div'>
-          <h2>{post.title}</h2>
+          <h2 style={{color: '#343a40'}}>{post.title}</h2>
         </Card.Title>
       </Link>
 

@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Button, Card, Form } from 'react-bootstrap'
-import posts from '../PostMocks'
+import { Row, Col, Image } from 'react-bootstrap'
 
 
 export const PostPages = ({ match }) => {
-  
+  const [post, setPost] = useState({})
 
-  const post = posts.find((p) => p.id == match.params.id)
+  useEffect(() => {
+    const fetchPost = async () => {
+      const { data } = await axios.get(`/api/v1/posts/${match.params.id}`)
+
+      setPost(data)
+    }
+
+    fetchPost()
+  }, [])
   
   return (
     <>
@@ -29,8 +37,8 @@ export const PostPages = ({ match }) => {
 
       <Row className='justify-content-md-center'>
         <Col md={8}>
-          <h8 className='text-muted'><i className="fas fa-user"></i>{' '}{post.author}</h8>{' '}
-          <h8 className='text-muted'><i className="far fa-calendar-alt"></i>{' '}{post.date}</h8>
+          <h6 className='text-muted'><i className="fas fa-user"></i>{' '}{post.author}</h6>{' '}
+          <h6 className='text-muted'><i className="far fa-calendar-alt"></i>{' '}{post.date}</h6>
         </Col>
       </Row>
       
