@@ -1,8 +1,10 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
-import posts from './data/postsMocks.js'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
+
+import postRoutes from './routes/postRoutes.js'
 
 dotenv.config()
 
@@ -10,14 +12,11 @@ connectDB()
 
 const app = express()
 
-app.get('/api/v1/posts', (req, res) => {
-  res.json(posts)
-})
+app.use('/api/v1/posts', postRoutes)
 
-app.get('/api/v1/posts/:id', (req, res) => {
-  const post = posts.find((p) => p._id === req.params.id)
-  res.json(post)
-})
+//error handler
+app.use(notFound) 
+app.use(errorHandler)
 
 const PORT = process.env.PORT
 
