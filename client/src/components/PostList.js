@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 import { PostCard } from './PostCard'
+import Loader from './Loader'
+import Message from './Message'
 import { listPosts } from '../actions/postActions'
 
 
@@ -19,9 +21,9 @@ export const PostList = () => {
   return (
     <>
     {loading 
-      ? (<h2>Loading...</h2>)
+      ? (<Loader />)
       : error
-      ? (<h3>{error}</h3>)
+      ? (<Message variant='danger'>{error}</Message>)
       : (
         <Container>
           <Row className="justify-content-md-center">
