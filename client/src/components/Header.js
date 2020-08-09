@@ -2,6 +2,11 @@ import React from 'react'
 import { Nav, Container, Row, Col} from 'react-bootstrap'
 
 export const Header = () => {
+  
+  const codeHandler = () => {
+    console.log('kakka')
+  }
+
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -16,10 +21,10 @@ export const Header = () => {
         <Col md={10}>
           <Nav variant="tabs" defaultActiveKey='all'>
             <Nav.Item>
-              <Nav.Link eventKey="all">All</Nav.Link>
+              <Nav.Link eventKey="all" >All</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="code">Code</Nav.Link>
+              <Nav.Link eventKey="code" onSelect={codeHandler} >Code</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="essay">Essay</Nav.Link>

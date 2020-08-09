@@ -29,7 +29,7 @@ export const PostList = () => {
           <Row className="justify-content-md-center">
             <Col lg={10}>
             {posts.map((post) => (
-                <PostCard post={post} key={Number(post._id)} />
+                <PostCard post={post} key={post._id} />
             ))}
             </Col>
           </Row>

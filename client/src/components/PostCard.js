@@ -26,7 +26,7 @@ export const PostCard = ({ post }) => {
         <h6 className='text-muted'><i className="fas fa-hashtag"></i>{' '}{post.tags}</h6>
       </Card.Text>
       <Card.Text as='div'>
-        <h6 className='text-muted'><i className="far fa-calendar-alt"></i>{' '}{post.date}</h6>
+        <h6 className='text-muted'><i className="far fa-calendar-alt"></i>{' '}{post.date.substring(0, 10)}</h6>
       </Card.Text>
       </Card.Body>
     </Card>
