@@ -2,11 +2,16 @@ import {
   POST_LIST_REQUEST,
   POST_LIST_SUCCESS,
   POST_LIST_FAIL,
+  POST_LIST_CODE_REQUEST,
+  POST_LIST_CODE_SUCCESS,
+  POST_LIST_CODE_FAIL,
   POST_DETAILS_REQUEST,
   POST_DETAILS_SUCCESS,
   POST_DETAILS_FAIL,
 } from '../constants/postConstants'
 
+
+//ALL POST
 export const postListReducer = (state = { posts: [] }, action) => {
   switch (action.type) {
     case POST_LIST_REQUEST:
@@ -14,6 +19,21 @@ export const postListReducer = (state = { posts: [] }, action) => {
     case POST_LIST_SUCCESS:
       return { loading: false, posts: action.payload }
     case POST_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+
+//POST CATEGORY CODE
+export const postListCodeReducer = (state = { postCode: [] }, action) => {
+  switch (action.type) {
+    case POST_LIST_CODE_REQUEST:
+      return { loading: true, postCode: [] }
+    case POST_LIST_CODE_SUCCESS:
+      return { loading: false, postCode: action.payload }
+    case POST_LIST_CODE_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

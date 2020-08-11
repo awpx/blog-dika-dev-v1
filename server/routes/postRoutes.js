@@ -13,6 +13,15 @@ router.get('/', asyncHandler(async (req, res) => {
   res.json(posts)
 }))
 
+//@desc       Fetch all post category code
+//@route      GET /api/v1/posts/code
+//@access     public
+router.get('/code', asyncHandler(async (req, res) => {
+  const posts = await Post.find({ category: 'code' })
+
+  res.json(posts)
+}))
+
 //@desc       Fetch single post
 //@route      GET /api/v1/posts/:id
 //@access     public
