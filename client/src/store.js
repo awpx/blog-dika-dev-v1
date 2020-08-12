@@ -4,13 +4,17 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   postListReducer,
   postListCodeReducer,
-  postDetailsReducer
+  postListEssayReducer,
+  postListHobbyReducer,
+  postDetailsReducer,
 } from './reducers/postReducers'
 
 
 const reducer = combineReducers({
   postList: postListReducer,
   postListCode: postListCodeReducer,
+  postListEssay: postListEssayReducer,
+  postListHobby: postListHobbyReducer,
   postDetails: postDetailsReducer,
 })
 

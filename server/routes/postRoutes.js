@@ -19,7 +19,43 @@ router.get('/', asyncHandler(async (req, res) => {
 router.get('/code', asyncHandler(async (req, res) => {
   const posts = await Post.find({ category: 'code' })
 
-  res.json(posts)
+  if(posts) {
+    res.json(posts)
+  } else {
+    res.status(404)
+    throw new Error(`Post not found`)
+  }
+
+}))
+
+
+//@desc       Fetch all post category essay
+//@route      GET /api/v1/posts/code
+//@access     public
+router.get('/essay', asyncHandler(async (req, res) => {
+  const posts = await Post.find({ category: 'essay' })
+
+  if(posts) {
+    res.json(posts)
+  } else {
+    res.status(404)
+    throw new Error(`Post not found`)
+  }
+}))
+
+
+//@desc       Fetch all post category hobby
+//@route      GET /api/v1/posts/code
+//@access     public
+router.get('/hobby', asyncHandler(async (req, res) => {
+  const posts = await Post.find({ category: 'hobby' })
+
+  if(posts) {
+    res.json(posts)
+  } else {
+    res.status(404)
+    throw new Error(`Post not found`)
+  }
 }))
 
 //@desc       Fetch single post

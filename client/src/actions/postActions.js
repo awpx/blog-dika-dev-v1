@@ -6,6 +6,12 @@ import {
   POST_LIST_CODE_REQUEST,
   POST_LIST_CODE_SUCCESS,
   POST_LIST_CODE_FAIL,
+  POST_LIST_ESSAY_REQUEST,
+  POST_LIST_ESSAY_SUCCESS,
+  POST_LIST_ESSAY_FAIL,
+  POST_LIST_HOBBY_REQUEST,
+  POST_LIST_HOBBY_SUCCESS,
+  POST_LIST_HOBBY_FAIL,
   POST_DETAILS_REQUEST,
   POST_DETAILS_SUCCESS,
   POST_DETAILS_FAIL,
@@ -39,7 +45,7 @@ export const listPostCode = () => async (dispatch) => {
   try {
     dispatch({ type: POST_LIST_CODE_REQUEST })
 
-    const { data } =await axios.get('/api/v1/posts/code')
+    const { data } = await axios.get('/api/v1/posts/code')
 
     dispatch({
       type: POST_LIST_CODE_SUCCESS,
@@ -56,6 +62,53 @@ export const listPostCode = () => async (dispatch) => {
     })
   }
 }
+
+//POST CATEGORY ESSAY
+export const listPostEssay = () => async (dispatch) => {
+  try {
+    dispatch({ type: POST_LIST_ESSAY_REQUEST })
+
+    const { data } = await axios.get('/api/v1/posts/essay')
+
+    dispatch({
+      type: POST_LIST_ESSAY_SUCCESS,
+      payload: data,
+    })
+
+  } catch (error) {
+    dispatch({ 
+      type: POST_LIST_ESSAY_FAIL,
+      payload: 
+        error.response && error.response.data.message 
+          ? error.response.data.message 
+          : error.message,
+    })
+  }
+}
+
+//POST CATEGORY HOBBY
+export const listPostHobby = () => async (dispatch) => {
+  try {
+    dispatch({ type: POST_LIST_HOBBY_REQUEST })
+
+    const { data } = await axios.get('/api/v1/posts/hobby')
+
+    dispatch({
+      type: POST_LIST_HOBBY_SUCCESS,
+      payload: data,
+    })
+
+  } catch (error) {
+    dispatch({ 
+      type: POST_LIST_HOBBY_FAIL,
+      payload: 
+        error.response && error.response.data.message 
+          ? error.response.data.message 
+          : error.message,
+    })
+  }
+}
+
 
 export const listPostDetails = (id) => async (dispatch) => {
   try {
