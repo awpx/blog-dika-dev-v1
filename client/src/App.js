@@ -4,6 +4,7 @@ import { Container,} from 'react-bootstrap'
 import { Footer } from './components/Footer'
 import { HomePages } from './pages/HomePages'
 import { PostPages } from './pages/PostPages'
+import { LoginPages } from './pages/LoginPages';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Container>
           <Route exact path='/' component={HomePages} />
           <Route path='/post/:id' component={PostPages} />
+          <Route exact path='/login' component={LoginPages} />
         </Container>
       </main>
       <Footer />
