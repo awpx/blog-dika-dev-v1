@@ -23,8 +23,8 @@ export const Header = () => {
         <p className="lead"><small> Twitter: <a href='https://twitter.com/awpx_' > @awpx_ </a></small></p>
         {userInfo && (
           <>
-            <LinkContainer to='/add'>
-              <Button variant='outline-primary m-2'>Add Post</Button>
+            <LinkContainer to='/postlist'>
+              <Button variant='outline-primary m-2'>Post List</Button>
             </LinkContainer>
             <Button variant='outline-primary' onClick={logoutHandler}>Logout</Button>
           </>
