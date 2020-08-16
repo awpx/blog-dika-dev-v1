@@ -8,6 +8,7 @@ import {
   postListEssayReducer,
   postListHobbyReducer,
   postDetailsReducer,
+  postDeleteReducer,
 } from './reducers/postReducers'
 
 
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   postListEssay: postListEssayReducer,
   postListHobby: postListHobbyReducer,
   postDetails: postDetailsReducer,
+  postDelete: postDeleteReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

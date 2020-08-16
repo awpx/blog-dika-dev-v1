@@ -15,6 +15,9 @@ import {
   POST_DETAILS_REQUEST,
   POST_DETAILS_SUCCESS,
   POST_DETAILS_FAIL,
+  POST_DELETE_REQUEST,
+  POST_DELETE_SUCCESS,
+  POST_DELETE_FAIL,
 } from '../constants/postConstants'
 
 //ALL POST
@@ -127,6 +130,34 @@ export const listPostDetails = (id) => async (dispatch) => {
       payload: 
         error.response && error.response.data.message 
           ? error.response.data.message 
+          : error.message,
+    })
+  }
+}
+
+
+export const deletePost= (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: POST_DELETE_REQUEST })
+
+    const { userLogin: { userInfo } } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    }
+
+    await axios.delete(`/api/v1/posts/${id}`, config)
+
+    dispatch({ type: POST_DELETE_SUCCESS })
+    
+  } catch (error) {
+    dispatch({
+      type: POST_DELETE_FAIL,
+      payload: 
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     })
   }

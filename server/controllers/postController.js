@@ -67,4 +67,19 @@ export const getPostById = asyncHandler(async (req, res) => {
   }
 })
 
+//@desc       delete post
+//@route      DELETE /api/v1/posts/:id
+//@access     private
+export const deletePost = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.id)
+
+  if(post) {
+    await post.remove()
+    res.json({message: 'post removed'})
+  } else {
+    res.status(404)
+    throw new Error(`Post not found`)
+  }
+})
+
 

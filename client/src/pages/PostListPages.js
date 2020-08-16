@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { 
-  listPosts
+  listPosts,
+  deletePost,
 } from '../actions/postActions'
 
 export const PostListPages = ({ history }) => {
@@ -18,8 +19,8 @@ export const PostListPages = ({ history }) => {
   const postList = useSelector(state => state.postList)
   const { loading, error, posts } = postList
 
-  // const productDelete = useSelector(state => state.productDelete)
-  // const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
+  const postDelete = useSelector(state => state.postDelete)
+  const { loading: loadingDelete, error: errorDelete, success: successDelete } = postDelete
 
   // const productCreate = useSelector(state => state.productCreate)
   // const { 
@@ -44,16 +45,16 @@ export const PostListPages = ({ history }) => {
     // }
     dispatch(listPosts())
     
-  }, [dispatch, history, userInfo,])
+  }, [dispatch, history, userInfo, successDelete])
 
   const createPostHandler = () => {
     // dispatch(createProduct())
   }
 
   const deleteHandler = (id) => {
-    // if(window.confirm('Are you sure want to delete this?')) {
-    //   dispatch(deleteProduct(id))
-    // }
+    if(window.confirm('Are you sure want to delete this?')) {
+      dispatch(deletePost(id))
+    }
   }
 
   return (
@@ -75,10 +76,10 @@ export const PostListPages = ({ history }) => {
         </Col>
       </Row>
 
-      {/* {loadingDelete && <Loader />}
+      {loadingDelete && <Loader />}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
-      {loadingCreate && <Loader />}
+      {/* {loadingCreate && <Loader />}
       {errorCreate && <Message variant='danger'>{errorCreate}</Message>} */}
 
       {loading 
