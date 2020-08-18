@@ -9,12 +9,14 @@ import {
   postListHobbyReducer,
   postDetailsReducer,
   postDeleteReducer,
+  postCreateReducer,
 } from './reducers/postReducers'
 
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   postList: postListReducer,
+  postCreate: postCreateReducer,
   postListCode: postListCodeReducer,
   postListEssay: postListEssayReducer,
   postListHobby: postListHobbyReducer,

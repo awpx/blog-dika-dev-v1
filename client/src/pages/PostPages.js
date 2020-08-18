@@ -56,7 +56,7 @@ export const PostPages = ({ match }) => {
 
             <Row className='justify-content-md-center my-4'>
               <Col md={10}>
-                <p>{post.content}</p>
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </Col>
             </Row>
           </>

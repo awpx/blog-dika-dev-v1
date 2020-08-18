@@ -8,7 +8,9 @@ import Message from '../components/Message'
 import { 
   listPosts,
   deletePost,
+  createPost,
 } from '../actions/postActions'
+import { POST_CREATE_RESET } from '../constants/postConstants'
 
 export const PostListPages = ({ history }) => {
   const dispatch = useDispatch()
@@ -22,33 +24,33 @@ export const PostListPages = ({ history }) => {
   const postDelete = useSelector(state => state.postDelete)
   const { loading: loadingDelete, error: errorDelete, success: successDelete } = postDelete
 
-  // const productCreate = useSelector(state => state.productCreate)
-  // const { 
-  //   loading: loadingCreate, 
-  //   error: errorCreate, 
-  //   success: successCreate,
-  //   product: createdProduct, 
-  // } = productCreate
+  const postCreate = useSelector(state => state.postCreate)
+  const { 
+    loading: loadingCreate, 
+    error: errorCreate, 
+    success: successCreate,
+    post: createdPost, 
+  } = postCreate
 
   useEffect(() => {
-    // dispatch({type: PRODUCT_CREATE_RESET})
+    dispatch({type: POST_CREATE_RESET})
 
 
     if (!userInfo) {
       history.push('/login')
     }
 
-    // if (successCreate) {
-    //   history.push(`/admin/product/${createdProduct._id}/edit`)
-    // } else {
-    //   dispatch(listProducts('', pageNumber))
-    // }
-    dispatch(listPosts())
+    if (successCreate) {
+      history.push(`/post/${createdPost._id}/edit`)
+    } else {
+      dispatch(listPosts())
+    }
     
-  }, [dispatch, history, userInfo, successDelete])
+    
+  }, [dispatch, history, userInfo, successDelete, successCreate, createdPost])
 
   const createPostHandler = () => {
-    // dispatch(createProduct())
+    dispatch(createPost())
   }
 
   const deleteHandler = (id) => {
@@ -79,8 +81,8 @@ export const PostListPages = ({ history }) => {
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
-      {/* {loadingCreate && <Loader />}
-      {errorCreate && <Message variant='danger'>{errorCreate}</Message>} */}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
 
       {loading 
         ? (<Loader />)
