@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { FormContainer } from '../components/FormContainer'
-import { listPostDetails } from '../actions/postActions'
+import { listPostDetails, updatePost } from '../actions/postActions'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { POST_UPDATE_RESET } from '../constants/postConstants'
 
 export const PostEditPages = ({ match, history }) => {
   const postId = match.params.id
@@ -26,24 +27,45 @@ export const PostEditPages = ({ match, history }) => {
   const postDetails = useSelector(state => state.postDetails)
   const { loading, error, post } = postDetails
 
+  const postUpdate = useSelector(state => state.postUpdate)
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = postUpdate
+
   useEffect(() => {
-    if(!post.title || post._id !== postId) {
-      dispatch(listPostDetails(postId))
+    if(successUpdate) {
+      dispatch({ type: POST_UPDATE_RESET })
+      history.push('/postlist')
     } else {
-      setAuthor(post.author)
-      setTitle(post.title)
-      setDescription(post.description)
-      setCategory(post.category)
-      setTags(post.tags)
-      setImage(post.image)
-      setDate(new Date(post.date))
-      setContent(post.content)
+      if(!post.title || post._id !== postId) {
+        dispatch(listPostDetails(postId))
+      } else {
+        setAuthor(post.author)
+        setTitle(post.title)
+        setDescription(post.description)
+        setCategory(post.category)
+        setTags(post.tags)
+        setImage(post.image)
+        setDate(new Date(post.date))
+        setContent(post.content)
+      }
     }
-  }, [history, dispatch, postId, post])
+
+    
+  }, [history, dispatch, postId, post, successUpdate])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    //update
+    
+    dispatch(updatePost({
+      _id: postId,
+      author,
+      description,
+      title,
+      category,
+      tags,
+      date,
+      image,
+      content,
+    }))
   }
   const uploadFileHandler = () => {
 
@@ -82,8 +104,8 @@ export const PostEditPages = ({ match, history }) => {
 
       <FormContainer>
         <h2>Edit Post</h2>
-        {/* {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-        {loadingUpdate && <Loader />} */}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+        {loadingUpdate && <Loader />}
         {loading 
           ? (<Loader />)
           : error
