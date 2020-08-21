@@ -8,7 +8,6 @@ import Message from '../components/Message'
 import { FormContainer } from '../components/FormContainer'
 import { listPostDetails, updatePost } from '../actions/postActions'
 import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
 import { POST_UPDATE_RESET } from '../constants/postConstants'
 
 export const PostEditPages = ({ match, history }) => {
@@ -100,10 +99,13 @@ export const PostEditPages = ({ match, history }) => {
   const modules = {
     toolbar: [
       [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }], 
       [{size: []}],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
       [{'list': 'ordered'}, {'list': 'bullet'}, 
        {'indent': '-1'}, {'indent': '+1'}],
+      [{ 'align': [] }],
+      [{ 'color': [] }, { 'background': [] }],
       ['link', 'image', 'video'],
       ['clean']
     ],
@@ -116,7 +118,8 @@ export const PostEditPages = ({ match, history }) => {
     'header', 'font', 'size',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet', 'indent',
-    'link', 'image', 'video'
+    'link', 'image', 'video',
+    'background', 'color', 'code-block', 'align',
   ]
   //============================================================
 

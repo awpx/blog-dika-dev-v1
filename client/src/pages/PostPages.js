@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import 'react-quill/dist/quill.snow.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image } from 'react-bootstrap'
