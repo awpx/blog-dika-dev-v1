@@ -7,7 +7,7 @@ export const Footer = () => {
       <Container>
         <Row>
           <Col className='text-center py-3'>
-          2020 Copyright &copy;  ABlog - All Right Reserved
+          2020 Copyright &copy;  Dika.dev - All Right Reserved
           </Col>
         </Row>
       </Container>
