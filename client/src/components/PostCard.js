@@ -6,7 +6,7 @@ export const PostCard = ({ post }) => {
   return (
     <Card className='my-4 rounded'>
       <Link to={`/post/${post._id}`}>
-        <Card.Img src={post.image} variant='top' />
+        <Card.Img src={post.image} variant='top' style={{maxHeight: "400px"}} />
       </Link>
 
       <Card.Body>
